@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطبخ جميلة | Jamila Kitchen</title>
+    
+    <!-- خطوط جوجل (Cairo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#D9381E',      
+                            orange: '#F2A900',   
+                            dark: '#2D3436',
+                            light: '#FFF8F0'     
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-brand': 'linear-gradient(135deg, #D9381E 0%, #F2A900 100%)',
+                        'gradient-hover': 'linear-gradient(135deg, #b91c1c 0%, #d97706 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #FFF8F0; }
+        .hero-bg {
+            background-image: linear-gradient(135deg, rgba(217, 56, 30, 0.9) 0%, rgba(242, 169, 0, 0.8) 100%), url('https://images.unsplash.com/photo-1556910103-1c02745a30bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(to left, #D9381E, #F2A900);
+            margin: 5px auto 0;
+            border-radius: 2px;
+        }
+        /* تخصيص شكل الـ Checkbox */
+        .custom-checkbox:checked + div {
+            background: linear-gradient(135deg, #D9381E 0%, #F2A900 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .scroll-smooth { scroll-behavior: smooth; }
+        
+        .food-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: #F2A900;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased scroll-smooth">
+
+    <!-- الهيدر -->
+    <header class="bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-brand rounded-full flex items-center justify-center text-white">
+                    <i class="fas fa-utensils text-lg"></i>
+                </div>
+                <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-brand">Jamila Kitchen</h1>
+            </div>
+            <nav class="hidden md:flex gap-8 font-bold text-gray-700">
+                <a href="#home" class="hover:text-brand-orange transition">الرئيسية</a>
+                <a href="#menu" class="hover:text-brand-orange transition">قائمة الطعام</a>
+                <a href="#contact" class="hover:text-brand-orange transition">تواصل معنا</a>
+            </nav>
+            <a href="#menu" class="bg-gradient-brand text-white px-6 py-2 rounded-full font-bold hover:shadow-lg hover:scale-105 transition transform">
+                اطلب الآن
+            </a>
+        </div>
+    </header>
+
+    <!-- القسم الأول: الصفحة الرئيسية والتعريف -->
+    <section id="home" class="hero-bg min-h-[85vh] flex items-center justify-center text-center text-white px-4 relative">
+        <div class="max-w-4xl z-10">
+            
+            <div class="space-y-4 mb-10">
+                <h2 class="text-3xl md:text-5xl font-bold drop-shadow-md">زهقت من أكل الشارع ؟</h2>
+                <h2 class="text-3xl md:text-5xl font-bold drop-shadow-md text-white">حنيت للأكل البيتي؟</h2>
+                <h2 class="text-3xl md:text-5xl font-bold drop-shadow-md">بس مش عندك وقت؟</h2>
+            </div>
+
+            <p class="text-xl md:text-2xl mb-10 font-medium text-white bg-white/20 backdrop-blur-sm p-6 rounded-xl inline-block border-r-4 border-white shadow-lg">
+                مع مطبخ جميله هنوفرلك وقتك باكل لذيذ وصحي هيوصلك لباب البيت !
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                <a href="tel:+201012334153" class="bg-white text-brand-red px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fas fa-phone"></i> اتصل بنا
+                </a>
+                <a href="https://wa.me/201012334153?text=السلام%20عليكم%20عايز%20استفسر%20عن%20الأكلات" target="_blank" class="bg-green-500 text-white px-8 py-3 rounded-full font-bold hover:bg-green-600 transition flex items-center justify-center gap-2 shadow-lg border-2 border-transparent hover:border-white">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </a>
+                <a href="https://www.facebook.com/share/1Cwea9WW6N/" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition flex items-center justify-center gap-2 shadow-lg border-2 border-transparent hover:border-white">
+                    <i class="fab fa-facebook-f"></i> فيسبوك
+                </a>
+            </div>
+        </div>
+        
+        <!-- موجة زخرفية أسفل الهيرو -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-[#FFF8F0]"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- قسم المعلومات -->
+    <section class="py-16 bg-[#FFF8F0]">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <!-- Cards -->
+                <div class="p-8 rounded-2xl bg-white shadow-lg border-b-4 border-green-500 hover:translate-y-[-5px] transition-transform duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                        <i class="fas fa-money-bill-wave text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">طرق الدفع</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">متاح فودافون كاش والدفع الجزئي للحجز.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white shadow-lg border-b-4 border-brand-red hover:translate-y-[-5px] transition-transform duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-red">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">مواعيد الطلب</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">الأوردر قبلها بـ 12 ساعة. العزومات قبلها بيومين.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white shadow-lg border-b-4 border-brand-orange hover:translate-y-[-5px] transition-transform duration-300">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-orange">
+                        <i class="fas fa-hand-holding-heart text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">إطعام وعزومات</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">وجبات إطعام، أفراح، وأعياد ميلاد بسعر جملة.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white shadow-lg border-b-4 border-blue-500 hover:translate-y-[-5px] transition-transform duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                        <i class="fas fa-concierge-bell text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">طلبات خاصة</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">أي صنف بره المنيو متاح بالاتفاق.</p>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-brand-red font-bold flex items-center justify-center gap-2"><i class="fas fa-exclamation-circle"></i> تنبيه: الأسعار تتغير يومياً وقد تنخفض أو ترتفع حسب السوق.</p>
+                <div class="w-full h-px bg-gray-200 my-3"></div>
+                <p class="text-gray-700 font-semibold flex items-center justify-center gap-2"><i class="fas fa-map-marker-alt text-brand-orange"></i> العنوان: العبور - الحي الثالث - تبه مصر للطيران</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الثاني: المينيو -->
+    <section id="menu" class="py-16 bg-white relative">
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#D9381E 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange font-bold text-lg uppercase tracking-wider">من مطبخنا لسفرتك</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-brand-dark mt-2 section-title">قائمة الطعام</h2>
+                <p class="text-gray-500 mt-2 text-lg">اختار الأصناف والكميات اللي تناسبك</p>
+            </div>
+
+            <div id="menu-sections-container" class="space-y-16">
+                <!-- سيتم توليد الأقسام هنا -->
+            </div>
+
+            <div class="mt-12 text-center py-8">
+                <button onclick="sendOrder()" class="bg-gradient-brand hover:bg-gradient-hover text-white text-xl font-bold py-4 px-16 rounded-full shadow-xl transform transition hover:scale-105 flex items-center justify-center gap-3 mx-auto">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                    إتمام العملية وإرسال الطلب
+                </button>
+                <p class="mt-3 text-gray-500 text-sm">سيتم تحويلك إلى واتساب برسالة منظمة بطلباتك</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-brand-dark text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold text-brand-orange mb-6">Jamila Kitchen</h3>
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://www.facebook.com/share/1Cwea9WW6N/" target="_blank" class="w-12 h-12 rounded-full bg-white/10 hover:bg-blue-600 flex items-center justify-center transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/201012334153" target="_blank" class="w-12 h-12 rounded-full bg-white/10 hover:bg-green-600 flex items-center justify-center transition text-xl"><i class="fab fa-whatsapp"></i></a>
+                <a href="tel:+201012334153" class="w-12 h-12 rounded-full bg-white/10 hover:bg-brand-red flex items-center justify-center transition text-xl"><i class="fas fa-phone"></i></a>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-400">جميع الحقوق محفوظة &copy; 2025 مطبخ جميلة</p>
+                <p class="text-gray-600 text-sm mt-2"> تصميم وبرمجة: محمود الجداوي</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const CATEGORIES_ORDER = [
+            { key: "محاشي", title: "ركن المحاشي", icon: "🥬" },
+            { key: "لحوم", title: "ركن اللحوم والدواجن", icon: "🍗" },
+            { key: "طيور", title: "الحمام والبط", icon: "🦆" },
+            { key: "صواني", title: "الصواني والطواجن", icon: "🥘" },
+            { key: "جانبي", title: "أرز وأطباق جانبية", icon: "🍚" },
+            { key: "مخبوزات", title: "المخبوزات", icon: "🥐" },
+            { key: "نواعم", title: "نواعم وحلويات", icon: "🍪" },
+            { key: "طواجن", title: "طواجن خاصة", icon: "🍲" },
+            { key: "مقبلات", title: "مقبلات وسمبوسك", icon: "🥟" }
+        ];
+
+        const menuItems = [
+            // محاشي (تم إضافة خيار التسوية)
+            { id: 1, name: "محشي كرنب", desc: "جاهز على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            { id: 2, name: "ورق عنب", desc: "جاهز على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            { id: 3, name: "باذنجان", desc: "جاهز على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            { id: 4, name: "كوسة", desc: "جاهزة على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            { id: 5, name: "مشكل (كوسة/باذنجان/فلفل)", desc: "جاهز على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            { id: 6, name: "فلفل", desc: "جاهز على التسوية", category: "محاشي", hasCooking: true, cookingLabel: "تسوية (+15ج)" },
+            // كوسة باللحمة لا يوجد لها خيار تسوية 15ج حسب الطلب
+            { id: 7, name: "كوسة باللحمة المفرومة", desc: "جاهزة على التسوية", category: "محاشي" }, 
+            { id: 8, name: "ممبار عادي", desc: "جاهز للتحمير", category: "محاشي", hasRoast: true, roastLabel: "زيادة تحميص (+15ج)" },
+
+            // لحوم ودواجن
+            { id: 9, name: "بانيه", desc: "جاهز على التسوية", category: "لحوم", hasRoast: true, roastLabel: "زيادة تحميص (+20ج)" },
+            { id: 10, name: "استربس", desc: "عادي أو حار", category: "لحوم", hasSpicy: true },
+            { id: 11, name: "بانيه متبل جريل", desc: "تتبيلة خاصة", category: "لحوم" },
+            { id: 12, name: "فرخة متبلة", desc: "حسب الوزن", category: "لحوم", hasRoast: true, roastLabel: "زيادة تسوية (+30ج)" },
+            { id: 13, name: "أوراك متبلة شوي", desc: "تتبيلة الشوي المميزة", category: "لحوم" },
+            { id: 14, name: "شيش طاووق وراك", desc: "متبل وجاهز", category: "لحوم" },
+            { id: 15, name: "شيش طاووق صدور", desc: "متبل وجاهز", category: "لحوم" },
+            { id: 16, name: "بوفتيك (إسكالوب بانيه)", desc: "قطعية ممتازة", category: "لحوم" },
+            { id: 17, name: "خلطة الحواوشي", desc: "الخلطة السرية", category: "لحوم" },
+            { id: 18, name: "كفتة أرز لحمة جملي", desc: "لحم جملي بلدي", category: "لحوم" },
+            { id: 19, name: "نصف كفتة مشوية", desc: "على الفحم", category: "لحوم" },
+
+            // معجنات وسمبوسك (تم إزالة الوزن الثابت ليظهر خيار الوزن)
+            { id: 20, name: "سمبوسك لحمة صافي", desc: "بالوزن", category: "مقبلات" },
+            { id: 21, name: "سمبوسك مكس جبن", desc: "بالوزن", category: "مقبلات" },
+
+            // حمام وبط
+            { id: 22, name: "جوز حمام بلدي", desc: "محشي أرز أو فريك", category: "طيور", hasFilling: true, countMode: true, unit: "جوز" },
+            { id: 23, name: "جوز حمام رومي", desc: "محشي أرز أو فريك", category: "طيور", hasFilling: true, countMode: true, unit: "جوز" },
+            { id: 24, name: "جوز حمام متنضف", desc: "محشي فقط (ني)", category: "طيور", countMode: true, unit: "جوز" },
+            { id: 25, name: "بط", desc: "حسب الوزن", category: "طيور" },
+
+            // صواني
+            { id: 26, name: "صينية مكرونة بشاميل (ك)", desc: "حجم عائلي", category: "صواني", fixedWeight: "كبيرة" },
+            { id: 27, name: "صينية مكرونة بشاميل (و)", desc: "تكفي فردين/ثلاثة", category: "صواني", fixedWeight: "وسط" },
+            { id: 28, name: "صينية كوسة بالبشاميل", desc: "باشميل كريمي", category: "صواني" },
+            { id: 29, name: "جلاش لحمة مفرومة", desc: "صينية", category: "صواني" },
+            { id: 30, name: "جلاش جبن وفلفل", desc: "صينية", category: "صواني" },
+            { id: 31, name: "صينية رقاق", desc: "باللحمة المفرومة", category: "صواني" },
+
+            // أرز ومخبوزات (تم تعديل باتيه وبريوش لإزالة الوزن الثابت)
+            { id: 32, name: "أرز بسمتي سادة", desc: "الكمية بالكيلو", category: "جانبي" },
+            { id: 33, name: "أرز بسمتي مكسرات", desc: "الكمية بالكيلو", category: "جانبي" },
+            { id: 34, name: "ميني بيتزا", desc: "للمدارس والحفلات", category: "مخبوزات" },
+            { id: 35, name: "ميني باتيه", desc: "بالوزن", category: "مخبوزات" },
+            { id: 36, name: "بريوش", desc: "بالوزن", category: "مخبوزات" },
+            { id: 37, name: "سينابون", desc: "بالقطعة", fixedWeight: "قطعة", category: "مخبوزات", countMode: true, unit: "قطعة" },
+            { id: 38, name: "عيش طري", desc: "مخبوز باللبن", category: "مخبوزات" },
+            
+            // نواعم وطواجن
+            { id: 39, name: "طواجن حسب الطلب", desc: "كوارع ورق عنب/كرنب", category: "طواجن", hasNote: true },
+            { id: 40, name: "بسكوت/بيتي فور/كحك", desc: "بالسمنة البلدي", category: "نواعم" }
+        ];
+
+        function generateWeightOptions(itemId) {
+            let options = '';
+            options += `<option value="ربع كيلو">ربع كيلو</option>`;
+            options += `<option value="نص كيلو">نص كيلو</option>`;
+            
+            for (let i = 1; i <= 5; i += 0.5) {
+                let label = i + " كيلو";
+                if (i % 1 !== 0) {
+                    label = Math.floor(i) + " ونص كيلو";
+                }
+                options += `<option value="${label}" ${i===1 ? 'selected' : ''}>${label}</option>`;
+            }
+            
+            return `
+                <div class="mt-3 hidden selection-area" id="options-${itemId}">
+                    <label class="block text-sm font-bold text-gray-700 mb-1">حدد الكمية/الوزن:</label>
+                    <select id="weight-${itemId}" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-orange focus:border-brand-orange block p-2.5">
+                        ${options}
+                    </select>
+                </div>
+            `;
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('menu-sections-container');
+            let html = '';
+
+            CATEGORIES_ORDER.forEach(cat => {
+                const items = menuItems.filter(item => item.category === cat.key);
+                
+                if (items.length > 0) {
+                    html += `
+                        <div class="mb-12">
+                            <div class="flex items-center gap-3 mb-6 border-b-2 border-brand-orange/20 pb-2">
+                                <span class="text-3xl bg-brand-light p-2 rounded-lg shadow-sm">${cat.icon}</span>
+                                <h3 class="text-2xl font-bold text-brand-dark">${cat.title}</h3>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    `;
+
+                    items.forEach(item => {
+                        let quantityInput = '';
+                        
+                        if (item.countMode) {
+                            quantityInput = `
+                                <div class="mt-3 hidden selection-area" id="options-${item.id}">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">العدد (${item.unit}):</label>
+                                    <input type="number" id="count-${item.id}" min="1" value="1" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-orange focus:border-brand-orange block p-2.5">
+                                </div>
+                            `;
+                        } else if (item.fixedWeight) {
+                            quantityInput = `
+                                <div class="mt-3 hidden selection-area" id="options-${item.id}">
+                                     <input type="hidden" id="weight-${item.id}" value="${item.fixedWeight}">
+                                     <div class="bg-gray-100 p-2 rounded text-center text-sm font-bold text-brand-red">الوزن: ${item.fixedWeight}</div>
+                                </div>
+                            `;
+                        } else {
+                            quantityInput = generateWeightOptions(item.id);
+                        }
+
+                        let extras = '';
+                        // خيار التسوية للمحاشي
+                        if (item.hasCooking) {
+                             extras += `
+                                <div class="flex items-center mt-3 p-2 bg-red-50 rounded border border-red-100">
+                                    <input id="extra-cooking-${item.id}" type="checkbox" value="تسوية" class="w-4 h-4 text-brand-red border-gray-300 rounded focus:ring-brand-red custom-checkbox">
+                                    <label for="extra-cooking-${item.id}" class="mr-2 text-sm font-bold text-brand-red">${item.cookingLabel}</label>
+                                </div>
+                            `;
+                        }
+
+                        // خيار التحميص/التسوية للحوم
+                        if (item.hasRoast) {
+                            extras += `
+                                <div class="flex items-center mt-3 p-2 bg-gray-50 rounded">
+                                    <input id="extra-roast-${item.id}" type="checkbox" value="${item.roastLabel}" class="w-4 h-4 text-brand-red border-gray-300 rounded focus:ring-brand-red custom-checkbox">
+                                    <label for="extra-roast-${item.id}" class="mr-2 text-sm font-medium text-gray-700">${item.roastLabel}</label>
+                                </div>
+                            `;
+                        }
+                        if (item.hasSpicy) {
+                            extras += `
+                                <div class="flex mt-3 gap-3 p-2 bg-gray-50 rounded">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="spicy-${item.id}" value="عادي" checked class="w-4 h-4 text-brand-orange focus:ring-brand-orange">
+                                        <span class="mr-1 text-sm">عادي</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="spicy-${item.id}" value="حار" class="w-4 h-4 text-brand-red focus:ring-brand-red">
+                                        <span class="mr-1 text-sm font-bold text-brand-red">حار 🔥</span>
+                                    </label>
+                                </div>
+                            `;
+                        }
+                        if (item.hasFilling) {
+                            extras += `
+                                <div class="mt-3">
+                                     <label class="text-xs font-bold text-gray-500 mb-1 block">نوع الحشو:</label>
+                                     <select id="filling-${item.id}" class="w-full bg-white border border-gray-300 text-sm rounded-lg p-2 focus:border-brand-orange outline-none">
+                                        <option value="أرز">حشو أرز</option>
+                                        <option value="فريك">حشو فريك</option>
+                                    </select>
+                                </div>
+                            `;
+                        }
+                        if (item.hasNote) {
+                             extras += `
+                                <input type="text" id="note-${item.id}" placeholder="اكتب تفاصيل طلبك هنا..." class="mt-3 w-full border border-gray-300 rounded-lg p-2 text-sm focus:border-brand-orange outline-none">
+                            `;
+                        }
+
+                        html += `
+                        <div class="food-card bg-white rounded-xl overflow-hidden relative group">
+                            <div class="p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <label class="cursor-pointer relative z-10 w-full flex justify-between items-start">
+                                        <div>
+                                            <h4 class="text-lg font-bold text-gray-800 group-hover:text-brand-red transition">${item.name}</h4>
+                                            <p class="text-gray-500 text-xs">${item.desc}</p>
+                                        </div>
+                                        
+                                        <div class="relative">
+                                            <input type="checkbox" onchange="toggleItem(${item.id})" id="check-${item.id}" class="peer sr-only">
+                                            <div class="w-6 h-6 border-2 border-gray-300 rounded flex items-center justify-center peer-checked:bg-gradient-brand peer-checked:border-transparent transition-all">
+                                                <i class="fas fa-check text-white text-xs opacity-0 peer-checked:opacity-100"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div id="wrapper-${item.id}" class="transition-all duration-300">
+                                    ${quantityInput}
+                                    <div class="selection-area hidden">
+                                        ${extras}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    });
+
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+        }
+
+        function toggleItem(id) {
+            const checkbox = document.getElementById(`check-${id}`);
+            const wrapper = document.getElementById(`wrapper-${id}`);
+            const options = wrapper.querySelectorAll('.selection-area');
+            const card = checkbox.closest('.food-card');
+
+            if (checkbox.checked) {
+                options.forEach(el => el.classList.remove('hidden'));
+                card.classList.add('ring-2', 'ring-brand-orange', 'bg-orange-50');
+            } else {
+                options.forEach(el => el.classList.add('hidden'));
+                card.classList.remove('ring-2', 'ring-brand-orange', 'bg-orange-50');
+            }
+        }
+
+        function cleanText(text) {
+            let cleaned = text.replace(/[*_]/g, ''); 
+            return cleaned;
+        }
+
+        function sendOrder() {
+            let messageLines = [];
+            messageLines.push("طلب جديد من موقع Jamila Kitchen");
+            messageLines.push(""); 
+
+            let hasItems = false;
+
+            menuItems.forEach(item => {
+                const checkbox = document.getElementById(`check-${item.id}`);
+                
+                if (checkbox && checkbox.checked) {
+                    hasItems = true;
+                    let quantityStr = "";
+
+                    if (item.countMode) {
+                        const countEl = document.getElementById(`count-${item.id}`);
+                        const count = countEl ? countEl.value : '1';
+                        quantityStr = `العدد: ${count} ${item.unit || ''}`;
+                    } else {
+                        const weightEl = document.getElementById(`weight-${item.id}`);
+                        const weight = weightEl ? weightEl.value : 'وزن افتراضي';
+                        quantityStr = `الوزن: ${weight}`;
+                    }
+                    
+                    let itemText = `- ${item.name} (${quantityStr})`;
+
+                    let extrasArr = [];
+                    
+                    // خيار التسوية للمحاشي
+                    const cookingCheck = document.getElementById(`extra-cooking-${item.id}`);
+                    if (cookingCheck && cookingCheck.checked) {
+                        extrasArr.push(cookingCheck.value); // يضيف "تسوية"
+                    }
+
+                    // تحميص
+                    const roastCheck = document.getElementById(`extra-roast-${item.id}`);
+                    if (roastCheck && roastCheck.checked) {
+                        extrasArr.push(roastCheck.value);
+                    }
+
+                    // سبايسي
+                    const spicyRadios = document.getElementsByName(`spicy-${item.id}`);
+                    if (spicyRadios.length > 0) {
+                        for(radio of spicyRadios) {
+                            if(radio.checked && radio.value === 'حار') extrasArr.push("حار");
+                        }
+                    }
+
+                    // حشو
+                    const fillingEl = document.getElementById(`filling-${item.id}`);
+                    if (fillingEl) {
+                        extrasArr.push(`حشو ${fillingEl.value}`);
+                    }
+
+                    // ملاحظات
+                    const noteEl = document.getElementById(`note-${item.id}`);
+                    if (noteEl && noteEl.value) {
+                        extrasArr.push(`ملاحظة: ${noteEl.value}`);
+                    }
+
+                    if (extrasArr.length > 0) {
+                        itemText += ` [${extrasArr.join('، ')}]`;
+                    }
+
+                    messageLines.push(cleanText(itemText));
+                }
+            });
+
+            if (!hasItems) {
+                alert("من فضلك اختر صنف واحد على الأقل من المينيو.");
+                return;
+            }
+
+            messageLines.push("");
+            messageLines.push("------------------");
+            messageLines.push("عايز تفصيل أو أسعار المنتج لو سمحت");
+
+            const finalMessage = messageLines.join("\n");
+            const encodedMessage = encodeURIComponent(finalMessage);
+
+            const phone = "201012334153";
+            const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+            
+            window.open(url, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderMenu);
+
+    </script>
+</body>
+</html>
